@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #020617;
+  --color-accent: var(--accent-color); /* Connects to our JS logic */
+  
+  /* Day/Night Variables */
+  --accent-color: #00f3ff;
+  --bg-main: #020617;
+  --grid-color: rgba(30, 41, 59, 0.5);
+}
+
+/* Light Mode Overrides */
+[data-theme='light'] {
+  --bg-main: #f0f4f8;
+  --grid-color: rgba(200, 210, 220, 0.8);
+  --accent-color: #0ea5e9;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.5s ease, color 0.5s ease;
+    @apply min-h-screen relative overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .bg-grid-tech {
+    background-image: 
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .glass-panel {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Bulletproof No-Scrollbar */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Tech Label for Sidebar */
+  .tech-label {
+    position: absolute;
+    left: 4rem; /* Ito yung dating left-16 */
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: rgba(0, 243, 255, 0.1);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+}
